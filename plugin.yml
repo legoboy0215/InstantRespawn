@@ -1,0 +1,16 @@
+  name: InstantRespawn
+  main: thebigsmileXD\InstantRespawn\Main
+  version: 0.1.0
+  api: 1.0.0
+  load: POSTWORLD
+  authors: [thebigsmileXD]
+  prefix: "[InstantRespawn]"
+  commands:
+   instantrespawn:
+    description: "Commands for InstantRespawn"
+    usage: "/instantrespawn <list|addworld <name>|removeworld <name>"
+    permission: instantrespawn.command
+  permissions:
+    instantrespawn.command:
+      description: Permission for /instantrespawn commands.
+      default: op
