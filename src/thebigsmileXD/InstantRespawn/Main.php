@@ -139,7 +139,6 @@ class Main extends PluginBase implements Listener{
 
 	public function spawnPlayer(Player $player, Level $level){
 		$this->getServer()->getScheduler()->cancelTask($this->tasks2[$player->getName()]);
-		unset($this->tasks[$player->getName()]);
 		$message = str_replace("{PLAYER}", $player->getDisplayName(), TextFormat::RED . $this->getConfig()->getNested("messages.messagetoplayerrespawn"));
 		$player->getInventory()->setHotbarSlotIndex(0, 0);
 		$player->getInventory()->setHotbarSlotIndex(1, 1);

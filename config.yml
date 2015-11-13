@@ -4,7 +4,6 @@ plugin:
   autoUpdate: false
 teleport:
   wait: 10
-drop: false
 level: hub
 messages:
   runingame: Please run this command ingame
