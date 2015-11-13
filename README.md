@@ -16,6 +16,9 @@ Warning: with AlwaysSpawn they respawn at the hub/lobby, not the same world.
 - fix error on /instantrespawn ls
 - add * as of using it in every world
 
+##Credits:
+@thebigsmileXD, and for the idea to @HotshotHD
+
 ##Notes
 
-This plugin was coded and is maintained by thebigsmileXD of the Imagical Corporation. This is not a plugin for everyone, this is a plugin for our intended use. Hopefully you find it useful too.
+This plugin was coded and is maintained by @thebigsmileXD of the Imagical Corporation. This is not a plugin for everyone, this is a plugin for our intended use. Hopefully you find it useful too.
