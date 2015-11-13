@@ -134,7 +134,6 @@ class Main extends PluginBase implements Listener{
 		else{
 			$this->getServer()->getScheduler()->cancelTask($this->tasks[$player->getName()]);
 			$this->getServer()->getScheduler()->cancelTask($this->tasks2[$player->getName()]);
-			unset($this->tasks[$player->getName()]);
 		}
 	}
 
@@ -258,9 +257,9 @@ class Main extends PluginBase implements Listener{
 	}
 
 	public function killHandler(Player $entity){
-		$this->tasks[$entity->getName()] =$this->getServer()->getScheduler()->scheduleDelayedTask( new Wait($this, $entity), $this->getConfig()->getNested("teleport.wait") * 20)->getTaskId();
+		$this->tasks[$entity->getName()] = $this->getServer()->getScheduler()->scheduleDelayedTask(new Wait($this, $entity), $this->getConfig()->getNested("teleport.wait") * 20)->getTaskId();
 		$entity->teleport($entity->getLevel()->getSafeSpawn());
-		$this->tasks2[$entity->getName()] = $this->getServer()->getScheduler()->scheduleRepeatingTask(new SendTip($this, $this->tasks2), 1)->getTaskId();
+		$this->tasks2[$entity->getName()] = $this->getServer()->getScheduler()->scheduleRepeatingTask(new SendTip($this, $entity), 1)->getTaskId();
 		$effect = Effect::getEffectByName("SLOWNESS");
 		$effect->setVisible(false);
 		$effect->setAmplifier(99);
