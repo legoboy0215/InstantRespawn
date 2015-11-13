@@ -14,6 +14,7 @@ use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\entity\EntityDamageByChildEntityEvent;
 use pocketmine\entity\Effect;
 use pocketmine\event\player\PlayerMoveEvent;
+use pocketmine\network\protocol\DropItemPacket;
 
 class Main extends PluginBase implements Listener{
 	public $tasks = array();
@@ -256,8 +257,17 @@ class Main extends PluginBase implements Listener{
 	}
 
 	public function killHandler(Player $entity){
+		if($this->getConfig()->exists("drop") && $this->getConfig()->get("drop") === "true"){
+			$dropitems = $entity->getInventory()->getContents();
+			foreach($dropitems as $item){
+				$entity->getLevel()->dropItem($entity->getPosition(), $item);
+			}
+			if($entity->getInventory() !== null){
+				$entity->getInventory()->clearAll();
+			}
+		}
 		$this->tasks[$entity->getName()] = $this->getServer()->getScheduler()->scheduleDelayedTask(new Wait($this, $entity), $this->getConfig()->getNested("teleport.wait") * 20)->getTaskId();
-		$entity->teleport($entity->getLevel()->getSafeSpawn());
+		$entity->teleport($entity->getLevel()->getSpawnLocation());
 		$this->tasks2[$entity->getName()] = $this->getServer()->getScheduler()->scheduleRepeatingTask(new SendTip($this, $entity), 1)->getTaskId();
 		$effect = Effect::getEffectByName("SLOWNESS");
 		$effect->setVisible(false);
